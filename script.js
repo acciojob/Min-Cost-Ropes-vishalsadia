@@ -1,29 +1,33 @@
-import heapq
+function mincost(arr)
+{ 
 
-def mincost(arr):
-    if not arr or len(arr) == 1:
-        return 0
-
-    # Convert the array to a min heap
+	 # Convert the input array into a min-heap
     heapq.heapify(arr)
-
+    
+    # Initialize the total cost
     total_cost = 0
-
-    # Connect ropes until there is only one rope left in the heap
+    
+    # Continue until there is only one rope left
     while len(arr) > 1:
-        # Extract the two smallest ropes
+        # Extract the two smallest ropes from the heap
         rope1 = heapq.heappop(arr)
         rope2 = heapq.heappop(arr)
-
-        # Connect the ropes and add the cost to the total
-        current_cost = rope1 + rope2
-        total_cost += current_cost
-
-        # Insert the connected rope back into the heap
-        heapq.heappush(arr, current_cost)
-
+        
+        # Calculate the cost of merging the two ropes
+        cost = rope1 + rope2
+        
+        # Add the cost to the total cost
+        total_cost += cost
+        
+        # Add the merged rope back to the heap
+        heapq.heappush(arr, cost)
+    
+    # The final result is the total cost
     return total_cost
 
-# Examples
-print(mincost([4, 3, 2, 6]))   # Output: 29
-print(mincost([1, 2, 3, 4, 5]))   # Output: 33
+//write your code here
+// return the min cost
+  
+}
+
+module.exports=mincost;
